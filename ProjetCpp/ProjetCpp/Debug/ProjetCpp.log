@@ -1,0 +1,6 @@
+﻿  EndowmentTransaction.cpp
+  ExpenseTransaction.cpp
+  Test.cpp
+D:\Files\User files\Desktop\Workspace\C++\ProjetCpp\Test.cpp(62,21): error C4996: 'ctime': This function or variable may be unsafe. Consider using ctime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  Transaction.cpp
+  Génération de code en cours...

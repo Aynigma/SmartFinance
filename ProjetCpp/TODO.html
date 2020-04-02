@@ -1,0 +1,112 @@
+<HTML>
+
+<HEAD>
+
+    <TITLE></TITLE>
+</HEAD>
+
+<BODY>
+    <style>
+        * {
+            font-size: 16pt;
+            background-color: grey;
+            color: lightgrey;
+        }
+        
+        li {
+            margin-bottom: 15px;
+        }
+        
+        ol {
+            counter-reset: section;
+            /* Creates a new instance of the
+                                            section counter with each ol
+                                            element */
+            list-style-type: none;
+        }
+        
+        li:before {
+            counter-increment: section;
+            /* Increments only this instance
+                                            of the section counter */
+            content: counters(section, ".") " ";
+            /* Adds the value of all instances
+                                            of the section counter separated
+                                            by a ".". */
+        }
+    </style>
+
+
+
+    <p>
+        Elements d'Architecture :
+        <ol>
+            <li>
+                Nomenclature : <br /> La nomenclature détermine l’élément sur lequel une transaction sera opérée par exemple l’article à créditer ou à débiter. Elle est structurée en arborescence ou les premiers élément (nœuds racines) contiennent les
+                nœuds feuilles du premier niveau, qui elles contiennent les nœuds feuilles du second niveau etc..<br/> Un exemple d’une arborescence c’est : Les Chapitres (nœuds racines) qui contiennent une liste de sous-chapitres (nœuds feuilles 1er
+                niveau). Les sous-chapitres contiennent une liste d’articles (nœuds feuilles 2nd niveau). Un article contient une liste de programmes.<br/> Il est demandé de réaliser le modèle objet qui permet d’ajouter, de modifier, ou de supprimer un
+                élément de la nomenclature. Un chapitre est caractérisé par son identifiant, son titre, son contenu, et sa description. Pour les nœuds feuilles, ils disposent en supplément de l’id de l’objet hôte. Par exemple, un sous chapitre contient
+                l’id du chapitre auquel il appartient, Un article devra contenir l’id du sous-chapitre etc..
+            </li>
+            <li>
+                Fournisseur :<br /> Il désigne la société qui propose ses prestations à la ville. Par exemple : une entreprise de maintenance de l’état des routes. Il est caractérisé par son id, le nom du gérant, la raison sociale (SSII, personne physique,
+                etc.), description, domaine, année de création, popularité, etc.<br/> On doit pouvoir ajouter, modifier, et supprimer un fournisseur.
+            </li>
+            <li>
+                Transaction :<br /> Une transaction désigne une opération financière menée sur un élément de la Nomenclature comme un article ou un programme. Une transaction peut prendre différentes natures à savoir une une transaction dotation, une
+                transaction dépense, une transaction transfert de fond.
+                <ol>
+                    <li>
+                        Transaction dotation : <br />Il s’agit d’une opération qui permet de créditer (d’alimenter) le solde d’un élément de la nomenclature comme un article. Ce solde désigne le budget dont dispose l’article sur une période de temps (une
+                        année). Il existe plusieurs types de transaction dotations à savoir :
+                        <ol>
+                            <li> (i)Budget initial : <br/>qui permet de créditer le solde annuel d’un article ou d’un programme. Un budget initial est caractérisé par son id, année d’exercice financier, sa date de réunion, description, le montant, date rajout
+                            </li>
+                            <li>(ii)Budget supplémentaire : <br/>qui permet de compléter le budget initial en lui rajoutant un montant donné à consommer pendant l’année en cours. Le budget supplémentaire reprend les mêmes caractéristiques.
+                            </li>
+                        </ol>
+                        On doit pouvoir rajouter d’autre modèles de transactions dotations en demandant à l’utilisateur d’introduire leurs attributs. Par exemple : rajouter des dotations location des services de la ville. Dans ce cas-là l’utilisateur introduit les paramètres
+                        suivants : année d’exercice financier, date de l’opération, date rajout, type de service, montant. (Il est autorisé de limiter le nombre d’attributs pour une nouvelle dotation a 4 attributs par exemple).
+                    </li>
+                    <li>
+                        Transaction Dépense : <br />Il s’agit d’une opération qui permet de débiter le solde d’un élément de la nomenclature comme un article. Une transaction dépense doit être liée à un fournisseur. On peut retrouver plusieurs types de
+                        transaction de dépenses chacune décrite par l’utilisateur comme est le cas pour les dotations. <br/>(i) Dépense facture proforma : caractérisée par l’id de la transaction, le numéro de la facture proforma, son fournisseur, la description.
+                        On doit pouvoir rajouter d’autre modèles de transactions dépenses comme est le cas pour les dotations.
+                    </li>
+                    <li>
+                        Transaction Transfert de Fond : <br />Cette opération génère 2 transactions : une dotation et une dépense.
+                    </li>
+                </ol>
+            </li>
+            <li>
+                Tableau de bord : <br />Une interface graphique sur laquelle on retrouve l’historique des transactions de chaque élément de la nomenclature, ainsi que son solde initial, son solde actuel, et son solde restant.
+            </li>
+            <li>
+                Statistiques et Rapports : <br />Permet d'exporter :
+                <ol>
+                    <li>(i) les détails d'une transaction,</li>
+                    <li>(ii) des historiques des transactions sur une période de temps donnée,</li>
+                    <li>(iii) historique des transaction par fournisseur, etc.</li>
+                </ol>
+            </li>
+        </ol>
+
+
+    </p>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+</BODY>
+
+</HTML>
