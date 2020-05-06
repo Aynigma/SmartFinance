@@ -5,6 +5,7 @@ class EndowmentTransaction :
 	public Transaction
 {
 private:
+	static std::vector<EndowmentTransaction> endowmentTransactions;
 	Article recipient;
 	bool isInitial;
 
@@ -22,6 +23,7 @@ public:
 	std::string toString();
 
 
+	static std::vector<EndowmentTransaction> getEndowmentTransactions();
 	Article getRecipient();
 	bool getIsInitial();
 };

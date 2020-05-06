@@ -5,25 +5,19 @@
 #include "Article.h"
 #include <vector>
 
-std::vector<Transaction> Transaction::transactions;
-
 Transaction::Transaction(unsigned int amount, Date date)
 {
 	this->amount = amount;
 	this->date = date;
-	this->transactions.push_back(*this);
 }
 
 Transaction::Transaction(unsigned int amount)
 {
 	this->amount = amount;
 	this->date = Date::today();
-	this->transactions.push_back(*this);
 }
 
-Transaction::~Transaction()
-{
-}
+Transaction::~Transaction(){}
 
 
 bool Transaction::operator==(Transaction right)
@@ -41,7 +35,7 @@ std::string Transaction::toString()
 {
 	std::string output("(");
 	output += this->date.toString() + ", ";
-	output += std::to_string(this->amount) + "€";
+	output += std::to_string(this->amount);
 	output += ")";
 	return output;
 }
@@ -49,14 +43,11 @@ std::string Transaction::toString()
 
 void Transaction::fundTransfert(unsigned int amount, Date date, Article source, Article recipient)
 {
-	ExpenseTransaction expense(amount, date, source, Provider::internal);
 	EndowmentTransaction endowment(amount, date, recipient, false);
+	ExpenseTransaction expense(amount, date, source, Provider::internal);
 }
 
-std::vector<Transaction> Transaction::getTransactions()
-{
-	return this->transactions;
-}
+
 
 unsigned int Transaction::getAmount()
 {
@@ -66,4 +57,38 @@ unsigned int Transaction::getAmount()
 Date Transaction::getDate()
 {
 	return this->date;
+}
+
+int Transaction::getBudget(Article target, bool addChildren)
+{
+	int sum = 0;
+
+	for (size_t i = 0; i < EndowmentTransaction::getEndowmentTransactions().size(); i++)
+	{
+		EndowmentTransaction endowmentTransaction = EndowmentTransaction::getEndowmentTransactions().at(i);
+		if (endowmentTransaction.getRecipient() == target)
+		{
+			sum += endowmentTransaction.getAmount();
+		}
+	}
+
+	for (size_t i = 0; i < ExpenseTransaction::getExpenseTransactions().size(); i++)
+	{
+		ExpenseTransaction expenseTransaction = ExpenseTransaction::getExpenseTransactions().at(i);
+		if (expenseTransaction.getSource() == target)
+		{
+			sum -= expenseTransaction.getAmount();
+		}
+	}
+
+	if (addChildren)
+	{
+		std::vector<Article> children = target.getChildren();
+		for (Article child : children)
+		{
+			sum += getBudget(child, true);
+		}
+	}
+
+	return sum;
 }

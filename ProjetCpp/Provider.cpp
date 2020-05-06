@@ -19,9 +19,15 @@ Provider::Provider(std::string managerName,
 	this->popularity = popularity;
 }
 
-//TODO
 Provider::Provider()
 {
+	this->id = nextId++;
+	this->managerName = "no manager";
+	this->socialReason = "no social reason";
+	this->description = "no description";
+	this->domain = "no domain";
+	this->creationYear = 0;
+	this->popularity = 0;
 }
 
 Provider::~Provider() {}

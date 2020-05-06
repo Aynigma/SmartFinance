@@ -8,6 +8,7 @@ class ExpenseTransaction :
 	public Transaction
 {
 private:
+	static std::vector<ExpenseTransaction> expenseTransactions;
 	Article source;
 	Provider recipient;
 
@@ -24,6 +25,7 @@ public:
 	std::string toString();
 
 
+	static std::vector<ExpenseTransaction> getExpenseTransactions();
 	Article getSource();
 	Provider getRecipient();
 

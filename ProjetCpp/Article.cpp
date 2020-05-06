@@ -71,19 +71,20 @@ std::string Article::toString()
 
 std::string Article::toHTMLString()
 {
-	std::string output("<div class='article'><p>" + this->content + "</p>");
+	std::string output("<div class='article'><span>" + this->content + "</span>");
 	if (this->children.size() > 0)
 	{
 		output += +"<ol>";
 		for (size_t i = 0; i < this->children.size() - 1; i++)
 		{
 			Article child = this->children.at(i);
-			output += "<li>" + child.toString() + "</li>";
+			output += "<li>" + child.toHTMLString() + "</li>";
 		}
-		output += "<li>" + this->children.at(this->children.size() - 1).toString() + "</li>";
+		output += "<li>" + this->children.at(this->children.size() - 1).toHTMLString() + "</li>";
+		output += "</ol>";
 	}
 
-	output += "</ol></div>";
+	output += "</div>";
 
 	return output;
 }

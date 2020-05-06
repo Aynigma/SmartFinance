@@ -40,13 +40,23 @@ bool Date::operator!=(Date right)
 
 bool Date::operator>(Date right)
 {
-	if (this->year < right.year || 
-		this->month < right.month ||
-		this->day < right.day ||
-		*this == right
-		) return false;
-	
-	return true;
+	if (this->year > right.year)
+	{
+		return true;
+	}
+	else if(this->year == right.year)
+	{
+		if (this->month > right.month)
+		{
+			return true;
+		}
+		else if(this->month == right.month)
+		{
+			if (this->day > right.day) return true;
+		}
+	}
+
+	return false;
 }
 
 bool Date::operator>=(Date right)
